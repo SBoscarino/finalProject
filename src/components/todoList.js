@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.js';
+const URL = 'http://localhost:5003';
 
 class ToDoList extends Component {
   constructor(props) {
@@ -9,13 +10,13 @@ class ToDoList extends Component {
     this.state = {
       toDoList: [],
       isComplete: '',
-      item: '',
+      description: '',
       personResponsible: ''
     }
   }
 
   componentDidMount(){
-    fetch('/api/todos')
+    fetch(`${URL}/api/todos`)
     .then(results => {
       return results.json();
     }).then(data => {
@@ -37,16 +38,20 @@ class ToDoList extends Component {
   render() {
     return (
       <div className="list">
-        <p>This is the TODOLIST component.</p>
+        <h2>Click one to mark as complete.</h2>
+        <ul> {this.state.toDoList.map((todo, index) => {
+          return(
+            <div key={index}>
+              <li><h3>{todo.description}</h3></li>
+              <li>Person Responsible: {todo.personResponsible}</li>
+              <li>Completed By: {todo.dueDate}</li>
+            </div>
+          )
+        })}
+        </ul>
       </div>
     )
   }
 }
-
-// <ul>
-//   {this.state.allTodos.map((todo, index) => {
-//     return <li key={index} todo={todo} onClick={() => this.toggleItem(index)} />
-//   })}
-// </ul>
 
 export default ToDoList;
