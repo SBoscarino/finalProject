@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import ListItem from './listItem.js';
+import ToDoList from './todoList.js';
+
+//for routing
+const URL = 'http://localhost:5003';
+
 
 class ListForm extends Component {
   constructor() {
@@ -18,6 +22,33 @@ class ListForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  createTodo(isComplete, description, personResponsible, dueDate) {
+    fetch(`${URL}/api/todos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+    },
+      body: JSON.stringify({
+        description: this.state.description,
+        isComplete: false,
+        personResponsible: this.state.personResponsible,
+        dueDate: this.state.dueDate,
+      })
+  }).then(
+    console.log("state in handle submit before reset", this.state),
+    this.setState({
+      isComplete: false,
+      description: '',
+      personResponsible: '',
+      dueDate: ''
+    }, () => {
+      console.log("state in handle submit after reset", this.state);
+    })
+
+    )
+  }
+
+  //push to state, post it to the db, and then reset state.
   handleSubmit(evt){
     evt.preventDefault();
     const todos = this.state.allTodos.slice();
@@ -26,26 +57,12 @@ class ListForm extends Component {
       isComplete: false,
       personResponsible: this.state.personResponsible,
       dueDate: this.state.dueDate,
-    });
+    })
 
-    this.setState({
-      allTodos : todos,
-      description: '',
-      personResponsible: '',
-      isComplete: false,
-      dueDate: '',
-    });
-    console.log("state in handle submit", this.state);
+    this.createTodo(false, this.state.description, this.state.personResponsible, this.state.dueDate);
+
   }
 
-// toggleItem(index) {
-//   const items = this.state.todos.slice();
-//   allTodos[index].isComplete = !allTodos[index].isComplete;
-//
-//   this.setState({
-//     allTodos: todos
-//   });
-// }
 
   handleDescriptionChange(evt) {
     this.setState({
@@ -70,30 +87,8 @@ class ListForm extends Component {
   }
 
 
-// componentDidMount(){
-//   fetch('/api/todos')
-//   .then(results => {
-//     return results.json();
-//   }).then(data => {
-//     console.log('data in component did mount', data);
-//     this.setState({allTodos: data});
-//   })
-// }
-
-
   render() {
     console.log("in render", this.state);
-    // let itemList;
-    // if (this.state.allTodos.todos.length > 0) {
-    //   itemList = <ul>
-    //     {this.state.allTodos.map((todo, index) => {
-    //       return <ListItem key={index} todo={todo} todoClick={() => this.toggleItem(index)} />
-    //     })}
-    //   </ul>
-    // }
-    // else {
-    //   itemList = <p>Hello! Add some stuff to the list! Add above!</p>
-    // }
     return (
       <div className="list">
         <form>
