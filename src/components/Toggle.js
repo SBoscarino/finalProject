@@ -1,7 +1,9 @@
 import React from 'react';
 
-//functional component that adds a class when an item is done.
-function ListItem(props) {
+//functional component that adds a class when an item is done.Toggles completion status.
+
+
+function Toggle(props) {
   let cssClass = '';
   if (props.item.isDone) {
     cssClass = 'completed';
@@ -14,4 +16,4 @@ function ListItem(props) {
   )
 }
 
-export default ListItem;
+export default Toggle;

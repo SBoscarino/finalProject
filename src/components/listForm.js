@@ -87,6 +87,11 @@ class ListForm extends Component {
   }
 
 
+  conditionalRendering(data){
+    
+  }
+
+
   render() {
     console.log("in render", this.state);
     return (
