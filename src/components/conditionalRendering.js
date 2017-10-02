@@ -1,21 +1,27 @@
 import React from 'react';
+import '../style/main.css'
 
 //this component is for conditional rendering of the list items in toDoList.js
 
-function ConditionalRenderingFunction(props) {
-  return (
-    <div className="list">
-      <h2 className="info">Click one to mark as complete.</h2>
-      <ul> {this.state.toDoList.map((todo) => {
-        let conditionaldate;
-        let newDate;
-        if (todo.dueDate === null) {
-          conditionaldate = null;
-        } else {
-            newDate = todo.dueDate.substring(0, 9);
-          let conditionaldate = <li>Completed By: {newDate}</li>
-        }
+//this renders twice: once while no data has been mounted and once with the data after mount in the parent element.
 
+function ConditionalRenderingFunction(props) {
+  if (props.length === 0) {
+    return <div>There is nothing here! Add some items to begin!</div>;
+  } else {
+    return (
+      <div className="list">
+        <h2 className="info">Click one to mark as complete.</h2>
+        <ul> {props.toDoList.map((todo) => {
+          let conditionaldate;
+          let newDate;
+          if (todo.dueDate === null) {
+            conditionaldate = null;
+          } else {
+            console.log('yayayay!');
+            newDate = todo.dueDate.substring(0, 10);
+            conditionaldate = <li>Completed By: {newDate}</li>
+          }
         return(
           <div  className="one"key={todo._id}>
             <li className="description"><h3>{todo.description}</h3></li>
@@ -26,8 +32,9 @@ function ConditionalRenderingFunction(props) {
         )
       })}
       </ul>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 export default ConditionalRenderingFunction;

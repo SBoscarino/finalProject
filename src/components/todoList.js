@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Toggle from './Toggle.js';
+import ConditionalRenderingFunction from './conditionalRendering.js'
 const URL = 'http://localhost:5003';
 
 class ToDoList extends Component {
@@ -28,33 +29,35 @@ class ToDoList extends Component {
     fetch(`${URL}/api/todos/delete/${_id}`, {
       method: 'DELETE'
     })
-      }
+  }
 
+  // sorting
+  sortByDate(){
+    console.log("dates!");
+  }
+  sortByPerson(){
+    console.log("people!");
+  }
 
+  //toggle item from incomplete to complete for all to see.
   // toggleItem(index) {
-  //   const items = this.state.todos.slice();
-  //   allTodos[index].isComplete = !allTodos[index].isComplete;
+  //   const items = this.state.toDoList.slice();
+  //   toDoList[index].isComplete = !toDoList[index].isComplete;
   //
   //   this.setState({
-  //     allTodos: todos
+  //     toDoList: data
   //   });
   // }
 
   render() {
     return (
       <div className="list">
-        <h2 className="info">Click one to mark as complete.</h2>
-        <ul> {this.state.toDoList.map((todo) => {
-          return(
-            <div  className="one"key={todo._id}>
-              <li className="description"><h3>{todo.description}</h3></li>
-              <li>Person Responsible: {todo.personResponsible}</li>
-              <li>Completed By: {todo.dueDate}</li>
-              <li><button onClick={() => this.delete(todo._id)}>Delete</button></li>
-            </div>
-          )
-        })}
-        </ul>
+        <div className="sortingSection">
+          <h2>Sorting</h2>
+          <button onClick={this.sortByDate}>By Date</button>
+          <button onClick={this.sortByPerson}>By Person</button>
+        </div>
+        <ConditionalRenderingFunction toDoList={this.state.toDoList}/>
       </div>
     )
   }
