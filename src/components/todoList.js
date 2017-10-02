@@ -3,10 +3,9 @@ import ListItem from './listItem.js';
 const URL = 'http://localhost:5003';
 
 class ToDoList extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
-//here, get all the data.
     this.state = {
       toDoList: [],
       isComplete: '',
@@ -25,6 +24,12 @@ class ToDoList extends Component {
     })
   }
 
+  delete(_id){
+    fetch(`${URL}/api/todos/delete/${_id}`, {
+      method: 'DELETE'
+    })
+      }
+
 
   // toggleItem(index) {
   //   const items = this.state.todos.slice();
@@ -39,12 +44,13 @@ class ToDoList extends Component {
     return (
       <div className="list">
         <h2>Click one to mark as complete.</h2>
-        <ul> {this.state.toDoList.map((todo, index) => {
+        <ul> {this.state.toDoList.map((todo) => {
           return(
-            <div key={index}>
+            <div key={todo._id}>
               <li><h3>{todo.description}</h3></li>
               <li>Person Responsible: {todo.personResponsible}</li>
               <li>Completed By: {todo.dueDate}</li>
+              <li><button onClick={() => this.delete(todo._id)}>Delete</button></li>
             </div>
           )
         })}

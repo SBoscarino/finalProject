@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ToDoList from './todoList.js';
+import '../style/main.css';
 
 //for routing
 const URL = 'http://localhost:5003';
@@ -44,8 +45,7 @@ class ListForm extends Component {
     }, () => {
       console.log("state in handle submit after reset", this.state);
     })
-
-    )
+  )
   }
 
   //push to state, post it to the db, and then reset state.
@@ -91,7 +91,7 @@ class ListForm extends Component {
     console.log("in render", this.state);
     return (
       <div className="list">
-        <form>
+        <form className="mainForm">
           <label>What do you need done?:
             <input type='text' value={this.state.description} onChange={this.handleDescriptionChange}/>
           </label>
@@ -102,7 +102,7 @@ class ListForm extends Component {
             <input type='date' value={this.state.dueDate} onChange={this.handleDateChange}/>
           </label>
         </form>
-        <button onClick={this.handleSubmit}>Clicky</button>
+        <button onClick={this.handleSubmit}>Add</button>
       </div>
     );
   }
