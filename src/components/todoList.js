@@ -43,11 +43,11 @@ class ToDoList extends Component {
   render() {
     return (
       <div className="list">
-        <h2>Click one to mark as complete.</h2>
+        <h2 className="info">Click one to mark as complete.</h2>
         <ul> {this.state.toDoList.map((todo) => {
           return(
-            <div key={todo._id}>
-              <li><h3>{todo.description}</h3></li>
+            <div  className="one"key={todo._id}>
+              <li className="description"><h3>{todo.description}</h3></li>
               <li>Person Responsible: {todo.personResponsible}</li>
               <li>Completed By: {todo.dueDate}</li>
               <li><button onClick={() => this.delete(todo._id)}>Delete</button></li>

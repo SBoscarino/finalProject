@@ -43,6 +43,52 @@ table {
 	border-spacing: 0;
 }
 
+
+/*global*/
+body {
+  color: #FF4E5D;
+  background-color: #002147;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.divider {
+  width: 70%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: #B1BBC6;
+}
+
+
+/*parent div --main*/
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: 50px;
+  padding-top: 20px;
+  padding-bottom:10px;
+}
+.titleTwo {
+  font-family: 'Anton', sans-serif;
+  font-size: 30px;
+  padding-top: 5px;
+  padding-bottom:20px;
+}
+footer {
+  padding: 20px 5px 2px 10px;
+  display:flex;
+  justify-content: flex-start;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: #B1BBC6;
+}
+
+
+
+/*form*/
 .mainForm {
   font-family: 'Josefin Sans', sans-serif;
   color: #FF4E5D;
@@ -64,16 +110,44 @@ button {
   color: #FF4E5D;
   border-color: #FF4E5D;
   border-radius: 50px;
-  background-color: #B1BBC6;
+  background-color: white;
   padding:10px;
 }
 button:hover{
-  color: #B1BBC6;
+  color: white;
   background-color: #FF4E5D;
 }
 
 
+
+/*list*/
+.info {
+  font-size: 20px;
+  padding: 30px;
+}
+ul {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+li {
+  padding:2px;
+  width: 100%;
+  text-align: left;
+}
+.description{
+  font-size: 20px;
+  color: white;
+}
+/*.one{
+  border: white 3px solid;
+}*/
+
+/*colors:*/
 /*
 #002147
 #FF4E5D
-#B1BBC6;*/
+#B1BBC6
+*/
