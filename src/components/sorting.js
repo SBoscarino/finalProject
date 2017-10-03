@@ -9,38 +9,40 @@ class Sort extends Component {
 
     this.state = {
       searchedList: [],
-      searchTerm: '',
-      isComplete: '',
-      description: '',
-      personResponsible: ''
+      searchPerson: ''
     }
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.searchForItem = this.searchForItem.bind(this);
+    this.handlePersonChange = this.handlePersonChange.bind(this);
+    this.sortByPerson = this.sortByPerson.bind(this);
   }
 
-  sortByDate(){
-    console.log("date!");
-  }
+//This is not working.
+  // clearSearch(){
+  //   let emptyList = [];
+  //   this.setState({
+  //     searchedList : emptyList
+  //   })
+  // }
 
-  handleSearchChange(evt) {
+  handlePersonChange(evt) {
     this.setState({
-      searchTerm: evt.target.value
+      searchPerson: evt.target.value
     });
     evt.preventDefault();
   }
-
-  searchForItem(searchedList, searchTerm){
-    const newList = this.state.searchedList.slice();
-      for(let i = 0; i <= this.state.toDoList.length; i++){
-        if (this.state.searchTerm === this.state.toDoList[i].personResponsible){
-          searchedList.push({
-            description: this.state.description,
+  
+//This is not working.
+  sortByPerson(){
+    console.log("props",this.props);
+    console.log("searchTerm that is compared", this.state.searchPerson.toLowerCase());
+    const newList = this.props.toDoList;
+      for(let i = 0; i < newList.length; i++){
+        if (this.state.searchPerson.toLowerCase() === newList[i].personResponsible.toLowerCase()){
+          this.state.searchedList.push({
+            description: this.props.description,
             isComplete: false,
-            personResponsible: this.state.personResponsible,
-            dueDate: this.state.dueDate,
+            personResponsible: this.props.personResponsible,
+            dueDate: this.props.dueDate,
           })
-        } else if (this.state.searchTerm !== this.state.toDoList[i].personResponsible){
-          console.log("no match at", this.state.toDoList[i].personResponsible);
         }
       }
     this.setState({
@@ -50,31 +52,32 @@ class Sort extends Component {
 
   render(){
     if (this.state.searchedList.length === 0) {
-      return <div>This is where sorted data will go.</div>;
-    } else {
-      return (
-      <div className="sortingSection">
-        <h2>Sorting</h2>
-        <button onClick={this.sortByDate}>By Date</button>
-        <button>Clear</button>
+      return(
         <div>
-          <input type="text" placeholder="search by name" value={this.state.searchTerm} onChange={this.handleSearchChange} />
-          <button onClick={this.searchForItem(this.state.toDoList, this.state.searchTerm)}>Search</button>
-          </div>
-        <ul>
-          {this.state.searchedList.map((item)=> {
-            return(
-              <div>
-            <li>{item.description}</li>
-            <li>{item.dueDate}</li>
-            </div>
-          )
-          })}
-        </ul>
-      </div>
-    )
+          <h2 className="info">Sorting</h2>
+          <input type="text" placeholder="search by name" value={this.state.searchPerson} onChange={this.handlePersonChange} />
+          <button onClick={this.sortByPerson}>Search</button>
+        </div>
+      )
+    } else {
+        return (
+        <div className="sortingSection">
+          <h2>Sorted: </h2>
+          <button onClick={this.clearSearch}>Clear</button>
+          <ul>
+            {this.state.searchedList.map((item)=> {
+              return(
+              <div key={item._id}>
+              <li>{item.description}</li>
+              <li>{item.dueDate}</li>
+              </div>
+            )
+            })}
+          </ul>
+        </div>
+      )
+    }
   }
-}
 }
 
 
