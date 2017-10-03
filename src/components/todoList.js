@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Toggle from './Toggle.js';
 import ConditionalRenderingFunction from './conditionalRendering.js'
+import Sort from './sorting.js';
 const URL = 'http://localhost:5003';
 
 class ToDoList extends Component {
@@ -8,6 +9,8 @@ class ToDoList extends Component {
     super();
 
     this.state = {
+      searchedList: [],
+      searchTerm: '',
       toDoList: [],
       isComplete: '',
       description: '',
@@ -31,13 +34,7 @@ class ToDoList extends Component {
     })
   }
 
-  // sorting
-  sortByDate(){
-    console.log("dates!");
-  }
-  sortByPerson(){
-    console.log("people!");
-  }
+
 
   //toggle item from incomplete to complete for all to see.
   // toggleItem(index) {
@@ -52,11 +49,7 @@ class ToDoList extends Component {
   render() {
     return (
       <div className="list">
-        <div className="sortingSection">
-          <h2>Sorting</h2>
-          <button onClick={this.sortByDate}>By Date</button>
-          <button onClick={this.sortByPerson}>By Person</button>
-        </div>
+        <Sort toDoList={this.state.toDoList}/>
         <ConditionalRenderingFunction toDoList={this.state.toDoList}/>
       </div>
     )

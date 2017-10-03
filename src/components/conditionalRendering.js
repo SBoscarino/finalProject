@@ -18,12 +18,11 @@ function ConditionalRenderingFunction(props) {
           if (todo.dueDate === null) {
             conditionaldate = null;
           } else {
-            console.log('yayayay!');
             newDate = todo.dueDate.substring(0, 10);
             conditionaldate = <li>Completed By: {newDate}</li>
           }
         return(
-          <div  className="one"key={todo._id}>
+          <div className="one"key={todo._id}>
             <li className="description"><h3>{todo.description}</h3></li>
             <li>Person Responsible: {todo.personResponsible}</li>
             {conditionaldate}

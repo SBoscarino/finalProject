@@ -35,17 +35,17 @@ class ListForm extends Component {
         personResponsible: this.state.personResponsible,
         dueDate: this.state.dueDate,
       })
-  }).then(
-    console.log("state in handle submit before reset", this.state),
-    this.setState({
-      isComplete: false,
-      description: '',
-      personResponsible: '',
-      dueDate: ''
-    }, () => {
-      console.log("state in handle submit after reset", this.state);
-    })
-  )
+    }).then(
+      console.log("state in handle submit before reset", this.state),
+      this.setState({
+        isComplete: false,
+        description: '',
+        personResponsible: '',
+        dueDate: ''
+      }, () => {
+        console.log("state in handle submit after reset", this.state);
+      })
+    )
   }
 
   //push to state, post it to the db, and then reset state.
@@ -58,9 +58,7 @@ class ListForm extends Component {
       personResponsible: this.state.personResponsible,
       dueDate: this.state.dueDate,
     })
-
     this.createTodo(false, this.state.description, this.state.personResponsible, this.state.dueDate);
-
   }
 
 
@@ -69,26 +67,20 @@ class ListForm extends Component {
       description: evt.target.value
     });
     evt.preventDefault();
-    console.log("state in input change", this.state);
   }
   handleDateChange(evt) {
     this.setState({
       dueDate: evt.target.value
     });
     evt.preventDefault();
-    console.log("state in input change", this.state);
   }
   handlePersonChange(evt) {
     this.setState({
       personResponsible: evt.target.value
     });
     evt.preventDefault();
-    console.log("state in input change", this.state);
   }
-
-
   conditionalRendering(data){
-    
   }
 
 

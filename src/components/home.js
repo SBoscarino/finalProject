@@ -6,8 +6,8 @@ class Home extends Component {
   render() {
     return(
       <div>
-        <h1 className="title"> Sprinkles </h1>
-        <h2 className="titleTwo"> A sassy todo list creator with help from Alexa! </h2>
+        <h1 className="title"> Cohort </h1>
+        <h2 className="titleTwo"> With help from Alexa, assign and create tasks to be shared with roomates or family. </h2>
         <ListForm />
         <div className="divider"></div>
         <ToDoList />
@@ -18,7 +18,6 @@ class Home extends Component {
       </div>
     );
   }
-
 }
 
 export default Home;
