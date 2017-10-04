@@ -128,30 +128,30 @@ button:hover{
 ul {
   margin-left: 20%;
   margin-right: 20%;
+	height:100%;
+	width: 90%;
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
 }
 li {
   padding:2px;
-	height:20px;
+	height:20%;
   width: 50%;
   text-align: left;
 }
 .one{
-	height: 50px;
-	padding-bottom: 100px;
+	/*height: 50px;*/
+	padding-bottom: 5%;
 }
 .description{
   font-size: 20px;
   color: white;
 }
-.deleteButton{
-	flex-wrap: wrap;
+.fullList{
+	border: red solid 1px;
+  height:500px;
 }
-/*.one{
-  border: white 3px solid;
-}*/
 
 /*colors:*/
 /*

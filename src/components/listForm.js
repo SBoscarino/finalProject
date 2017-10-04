@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ToDoList from './todoList.js';
 import '../style/main.css';
 
 //for routing

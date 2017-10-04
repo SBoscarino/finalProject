@@ -9,7 +9,7 @@ function ConditionalRenderingFunction(props) {
     return <div>There is nothing here! Add some items to begin!</div>;
   } else {
     return (
-      <div className="list">
+      <div className="fullList">
         <h2 className="info">Click one to mark as complete.</h2>
         <ul> {props.toDoList.map((todo) => {
           let conditionaldate;

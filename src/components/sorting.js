@@ -29,26 +29,24 @@ class Sort extends Component {
     });
     evt.preventDefault();
   }
-  
-//This is not working.
+
   sortByPerson(){
-    console.log("props",this.props);
-    console.log("searchTerm that is compared", this.state.searchPerson.toLowerCase());
-    const newList = this.props.toDoList;
-      for(let i = 0; i < newList.length; i++){
-        if (this.state.searchPerson.toLowerCase() === newList[i].personResponsible.toLowerCase()){
-          this.state.searchedList.push({
-            description: this.props.description,
-            isComplete: false,
-            personResponsible: this.props.personResponsible,
-            dueDate: this.props.dueDate,
+    const mainList = this.props.toDoList;
+    const filteredList = this.state.searchedList;
+      for(let i = 0; i < mainList.length; i++){
+        if (this.state.searchPerson.toLowerCase() === mainList[i].personResponsible.toLowerCase()){
+          filteredList.push({
+            description: this.props.toDoList[i].description,
+            dueDate: this.props.toDoList[i].dueDate
           })
         }
       }
     this.setState({
-      searchedList : newList
+      searchedList : filteredList
     });
   }
+
+
 
   render(){
     if (this.state.searchedList.length === 0) {
@@ -60,20 +58,28 @@ class Sort extends Component {
         </div>
       )
     } else {
-        return (
+      return (
         <div className="sortingSection">
           <h2>Sorted: </h2>
           <button onClick={this.clearSearch}>Clear</button>
-          <ul>
-            {this.state.searchedList.map((item)=> {
-              return(
-              <div key={item._id}>
-              <li>{item.description}</li>
-              <li>{item.dueDate}</li>
-              </div>
-            )
-            })}
-          </ul>
+          <ul> {this.state.searchedList.map((todo) => {
+            let conditionaldate;
+            let newDate;
+            if (todo.dueDate === null) {
+              conditionaldate = null;
+            } else {
+              newDate = todo.dueDate.substring(0, 10);
+              conditionaldate = <li>Complete By: {newDate}</li>
+            }
+          return(
+            <div className="one"key={todo._id}>
+              <li className="description"><h3>{todo.description}</h3></li>
+              {conditionaldate}
+              <li className="deleteButton"><button onClick={() => this.delete(todo._id)}>Delete</button></li>
+            </div>
+          )
+        })}
+        </ul>
         </div>
       )
     }
