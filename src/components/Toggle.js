@@ -5,13 +5,12 @@ import React from 'react';
 
 function Toggle(props) {
   let cssClass = '';
-  if (props.item.isDone) {
+  if (this.props.toDoList.isComplete) {
     cssClass = 'completed';
   }
-
   return (
     <div className={cssClass} onClick={props.todoClick}>
-      <p className="handwriting">{props.item.text}</p>
+      <p className="strikeout">{this.props.toDoList.description}</p>
     </div>
   )
 }

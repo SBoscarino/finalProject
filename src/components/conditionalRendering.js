@@ -4,6 +4,8 @@ import '../style/main.css'
 //this component is for conditional rendering of the list items in toDoList.js
 //this renders twice: once while no data has been mounted and once with the data after mount in the parent element.
 
+
+
 function ConditionalRenderingFunction(props) {
   if (props.length === 0) {
     return <div>There is nothing here! Add some items to begin!</div>;
@@ -25,7 +27,7 @@ function ConditionalRenderingFunction(props) {
             <li className="description"><h3>{todo.description}</h3></li>
             <li>Person Responsible: {todo.personResponsible}</li>
             {conditionaldate}
-            <li className="deleteButton"><button onClick={() => this.delete(todo._id)}>Delete</button></li>
+            <li className="deleteButton"><button onClick={() => props.delete(todo._id)}>Delete</button></li>
           </div>
         )
       })}

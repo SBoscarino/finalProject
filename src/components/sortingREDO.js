@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import '../style/main.css'
+const URL = 'http://localhost:5003';
 
 //this component is for sorting toDoList data.
 
-class Sort extends Component {
+class SortRedo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      searchedList: [],
+      filteredList: [],
       searchPerson: '',
       toDoList: []
     }
@@ -18,8 +19,12 @@ class Sort extends Component {
   }
 
   clearSearch(){
-    this.setState({
-      searchedList :[]
+    fetch(`${URL}/api/todos`)
+    .then(results => {
+      return results.json();
+    }).then(data => {
+      console.log('in clearSearch', data);
+      this.setState({toDoList: data});
     })
   }
 
@@ -31,25 +36,28 @@ class Sort extends Component {
   }
 
   sortByPerson(){
-    const mainList = this.props.toDoList;
-    const filteredList = this.state.searchedList;
-      for(let i = 0; i < mainList.length; i++){
-        if (this.state.searchPerson.toLowerCase() === mainList[i].personResponsible.toLowerCase()){
-          filteredList.push({
-            description: this.props.toDoList[i].description,
-            dueDate: this.props.toDoList[i].dueDate
-          })
-        }
+    console.log("props", this.props);
+    console.log("searched person", this.state.searchPerson);
+    let filteredList = [];
+    for(let i = 0; i < this.props.toDoList.length; i++){
+      console.log("each loop", this.props.toDoList[i].personResponsible);
+      if (this.state.searchPerson.toLowerCase() === this.props.toDoList[i].personResponsible.toLowerCase()){
+        console.log("matched", this.props.toDoList[i].personResponsible);
+        filteredList.push({
+          description: this.props.toDoList[i].description,
+          dueDate: this.props.toDoList[i].dueDate
+        })
       }
+    }
     this.setState({
-      searchedList : filteredList
+      toDoList : filteredList
     });
   }
 
 
 
   render(){
-    if (this.state.searchedList.length === 0) {
+    if (this.state.filteredList.length === 0) {
       return(
         <div>
           <h2 className="info">Sorting</h2>
@@ -62,7 +70,7 @@ class Sort extends Component {
         <div className="sortingSection">
           <h2>Sorted: </h2>
           <button onClick={this.clearSearch}>Clear</button>
-          <ul> {this.state.searchedList.map((todo) => {
+          <ul> {this.state.toDoList.map((todo) => {
             let conditionaldate;
             let newDate;
             if (todo.dueDate === null) {
@@ -87,4 +95,4 @@ class Sort extends Component {
 }
 
 
-export default Sort;
+export default SortRedo;
