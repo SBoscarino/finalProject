@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/main.css';
 
-//This component is simply a container for the list. Purely visual.
+//This component is simply a container for the final list. Purely visual.
 
 
 function List(props){

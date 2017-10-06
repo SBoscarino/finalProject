@@ -4,6 +4,8 @@ import ListForm from './listForm.js'
 import List from './list.js';
 const URL = 'http://localhost:5003';
 
+//this is the main component. Information is sent to and from the API here. Logic dealing with state lives here.
+
 class ToDoList extends Component {
   constructor() {
     super();
@@ -62,21 +64,24 @@ class ToDoList extends Component {
     evt.preventDefault();
   }
 
-  //each time there is a match, push to searchedList in state. when done, set finalList to searchedList
+  //each time there is a match, push to matches array. when done, set finalList to the matched terms.
   sortByPerson(){
+    const matches = [];
     for(let i = 0; i < this.state.toDoList.length; i++){
       if (this.state.searchPerson.toLowerCase() === this.state.toDoList[i].personResponsible.toLowerCase()){
-        this.state.searchedList.push({
+        matches.push({
           description: this.state.toDoList[i].description,
           dueDate: this.state.toDoList[i].dueDate
         })
       }
     }
     this.setState({
-      finalList : this.state.searchedList
+      finalList : matches,
+      searchedList : matches
     });
   }
 
+//render the form for making a new todo, the search box, and the final list.
 
   render() {
     return(

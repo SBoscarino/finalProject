@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ToDoList from './todoList.js';
+
+//this component is for rendering the title, footer, and base info.
+
 class Home extends Component {
   render() {
     return(
@@ -12,7 +15,7 @@ class Home extends Component {
         <footer>
         Made with love by <a href="www.stefanieboscarino.com">  Stefanie Boscarino </a> 2017.
         </footer>
-        
+
       </div>
     );
   }
