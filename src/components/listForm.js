@@ -4,6 +4,7 @@ import '../style/main.css';
 //for routing
 const URL = 'http://localhost:5003';
 
+// this component handles submitting a new todo.
 
 class ListForm extends Component {
   constructor() {
@@ -47,7 +48,7 @@ class ListForm extends Component {
     )
   }
 
-  //push to state, post it to the db, and then reset state.
+  //push to state, post it to the db, and then reset state in this component.
   handleSubmit(evt){
     evt.preventDefault();
     const todos = this.state.allTodos.slice();
@@ -57,7 +58,7 @@ class ListForm extends Component {
       personResponsible: this.state.personResponsible,
       dueDate: this.state.dueDate,
     })
-    this.createTodo(false, this.state.description, this.state.personResponsible, this.state.dueDate);
+    this.createTodo(false, this.state.description, this.state.personResponsible, this.state.dueDate)
   }
 
 

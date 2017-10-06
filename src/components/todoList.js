@@ -27,9 +27,16 @@ class ToDoList extends Component {
   this.handlePersonChange = this.handlePersonChange.bind(this);
   this.sortByPerson = this.sortByPerson.bind(this);
   this.clearSearch = this.clearSearch.bind(this);
+  this.getDatData = this.getDatData.bind(this);
+  this.delete = this.delete.bind(this);
   }
 
   componentDidMount(){
+    this.getDatData();
+  }
+
+
+  getDatData(){
     fetch(`${URL}/api/todos`)
     .then(results => {
       return results.json();
@@ -45,7 +52,8 @@ class ToDoList extends Component {
   delete(_id){
     fetch(`${URL}/api/todos/delete/${_id}`, {
       method: 'DELETE'
-    })
+    }).then( () => this.getDatData()
+    )
   }
 
   //on click, just show the whole list.
@@ -86,10 +94,11 @@ class ToDoList extends Component {
   render() {
     return(
       <div>
-        <ListForm />
+        <ListForm getDatData={this.getDatData}/>
         <div className="divider"></div>
         <Sort sortByPerson={this.sortByPerson} searchedList={this.state.searchedList} handlePersonChange={this.handlePersonChange} clearSearch={this.clearSearch} toDoList={this.state.toDoList} finalList={this.state.finalList}/>
-        <List finalList={this.state.finalList} searchedList={this.state.searchedList} />
+        <List finalList={this.state.finalList} searchedList={this.state.searchedList}
+        delete={this.delete} />
         <div className="divider"></div>
       </div>
     );
