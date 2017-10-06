@@ -8,7 +8,7 @@ import '../style/main.css'
 
 function ConditionalRenderingFunction(props) {
   if (props.length === 0) {
-    return <div>There is nothing here! Add some items to begin!</div>;
+    return <div>There is nothing here! Add some items to begin!</div>
   } else {
     return (
       <div className="fullList">
