@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sort from './sorting.js'
 import ListForm from './listForm.js'
 import List from './list.js';
-const URL = 'https://finalprojectbackend.herokuapp.com/';
+const URL = 'https://finalprojectbackend.herokuapp.com';
 
 //this is the main component. Information is sent to and from the API here. Logic dealing with state lives here.
 
