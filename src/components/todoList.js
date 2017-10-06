@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sort from './sorting.js'
 import ListForm from './listForm.js'
-import List from './container.js';
+import List from './list.js';
 const URL = 'http://localhost:5003';
 
 class ToDoList extends Component {
@@ -9,8 +9,7 @@ class ToDoList extends Component {
     super();
 
 
-
-    //searchedlist = list searches are ported into.
+    //searchedlist = list searches are ported into this.
     //toDoList = list containing everything.
     //finallist = list rendered to List component.
 
@@ -34,7 +33,10 @@ class ToDoList extends Component {
       return results.json();
     }).then(data => {
       console.log('data in component did mount', data);
-      this.setState({toDoList: data});
+      this.setState({
+        toDoList: data,
+        finalList: data
+      });
     })
   }
 
@@ -48,7 +50,8 @@ class ToDoList extends Component {
   clearSearch(){
     console.log('clear!');
     this.setState({
-      finalList : this.state.toDoList
+      finalList : this.state.toDoList,
+      searchedList: []
     })
   }
 
@@ -75,25 +78,17 @@ class ToDoList extends Component {
   }
 
 
-      render() {
-        return(
-          <div>
-
-            <ListForm />
-
-            <div className="divider"></div>
-
-            <Sort sortByPerson={this.sortByPerson} searchedList={this.state.searchedList} handlePersonChange={this.handlePersonChange} clearSearch={this.clearSearch} toDoList={this.state.toDoList} finalList={this.state.finalList}/>
-
-            <div className="divider"></div>
-
-            <List finalList={this.state.finalList} />
-
-            <div className="divider"></div>
-
-          </div>
-        );
-      }
-    }
+  render() {
+    return(
+      <div>
+        <ListForm />
+        <div className="divider"></div>
+        <Sort sortByPerson={this.sortByPerson} searchedList={this.state.searchedList} handlePersonChange={this.handlePersonChange} clearSearch={this.clearSearch} toDoList={this.state.toDoList} finalList={this.state.finalList}/>
+        <List finalList={this.state.finalList} searchedList={this.state.searchedList} />
+        <div className="divider"></div>
+      </div>
+    );
+  }
+}
 
 export default ToDoList;

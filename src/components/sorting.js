@@ -15,31 +15,10 @@ function Sort(props){
   } else {
     return (
       <div className="sortingSection">
-        <h2>Sorted: </h2>
-        <button onClick={props.clearSearch}>Clear</button>
-        <ul> {props.searchedList.map((todo) => {
-          let conditionaldate;
-          let newDate;
-          if (todo.dueDate === null) {
-            conditionaldate = null;
-          } else {
-            newDate = todo.dueDate.substring(0, 10);
-            conditionaldate = <li>Complete By: {newDate}</li>
-          }
-        return(
-          <div className="one"key={todo._id}>
-            <li className="description"><h3>{todo.description}</h3></li>
-            {conditionaldate}
-            <li className="deleteButton"><button onClick={() => props.delete(todo._id)}>Delete</button></li>
-          </div>
-        )
-      })}
-      </ul>
+        <button onClick={props.clearSearch}>Clear Search Results</button>
       </div>
     )
   }
-
 }
-
 
 export default Sort;
