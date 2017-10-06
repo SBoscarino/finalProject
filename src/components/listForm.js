@@ -1,108 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../style/main.css';
 
-//for routing
-const URL = 'http://localhost:5003';
+// this component handles visuals for submitting a new todo.
 
-// this component handles submitting a new todo.
-
-class ListForm extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      allTodos: [],
-      isComplete: false,
-      description: '',
-      personResponsible: '',
-      dueDate: ''
-    }
-    this.handlePersonChange = this.handlePersonChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  createTodo(isComplete, description, personResponsible, dueDate) {
-    fetch(`${URL}/api/todos`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-    },
-      body: JSON.stringify({
-        description: this.state.description,
-        isComplete: false,
-        personResponsible: this.state.personResponsible,
-        dueDate: this.state.dueDate,
-      })
-    }).then(
-      console.log("state in handle submit before reset", this.state),
-      this.setState({
-        isComplete: false,
-        description: '',
-        personResponsible: '',
-        dueDate: ''
-      }, () => {
-        console.log("state in handle submit after reset", this.state);
-      })
-    )
-  }
-
-  //push to state, post it to the db, and then reset state in this component.
-  handleSubmit(evt){
-    evt.preventDefault();
-    const todos = this.state.allTodos.slice();
-    todos.push({
-      description: this.state.description,
-      isComplete: false,
-      personResponsible: this.state.personResponsible,
-      dueDate: this.state.dueDate,
-    })
-    this.createTodo(false, this.state.description, this.state.personResponsible, this.state.dueDate)
-  }
-
-
-  handleDescriptionChange(evt) {
-    this.setState({
-      description: evt.target.value
-    });
-    evt.preventDefault();
-  }
-  handleDateChange(evt) {
-    this.setState({
-      dueDate: evt.target.value
-    });
-    evt.preventDefault();
-  }
-  handlePersonChange(evt) {
-    this.setState({
-      personResponsible: evt.target.value
-    });
-    evt.preventDefault();
-  }
-  conditionalRendering(data){
-  }
-
-
-  render() {
-    console.log("in render", this.state);
-    return (
-      <div className="list">
-        <form className="mainForm">
-          <label>What do you need done?:
-            <input type='text' value={this.state.description} onChange={this.handleDescriptionChange}/>
-          </label>
-          <label> Who is responsible? :
-            <input type='text' value={this.state.personResponsible} onChange={this.handlePersonChange}/>
-          </label>
-          <label> Due Date :
-            <input type='date' value={this.state.dueDate} onChange={this.handleDateChange}/>
-          </label>
-        </form>
-        <button onClick={this.handleSubmit}>Add</button>
-      </div>
-    );
-  }
+function ListForm(props){
+  return (
+    <div className="list">
+      <form className="mainForm">
+        <label>What do you need done?:
+          <input type='text' value={props.description} onChange={props.handleDescriptionChange}/>
+        </label>
+        <label> Who is responsible? :
+          <input type='text' value={props.personResponsible} onChange={props.handlePersonFormChange}/>
+        </label>
+        <label> Due Date :
+          <input type='date' value={props.dueDate} onChange={props.handleDateChange}/>
+        </label>
+      </form>
+      <button onClick={props.handleSubmit}>Add</button>
+    </div>
+  );
 }
 
 export default ListForm;
