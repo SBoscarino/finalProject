@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sort from './sorting.js'
 import ListForm from './listForm.js'
 import List from './list.js';
-const URL = 'http://localhost:5003';
+const URL = 'mongodb://heroku_wbt1qf0m:9lpliscqqjdvqsmin1vavo376e@ds111895.mlab.com:11895/heroku_wbt1qf0m';
 
 //this is the main component. Information is sent to and from the API here. Logic dealing with state lives here.
 
