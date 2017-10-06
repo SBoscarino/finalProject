@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sort from './sorting.js'
 import ListForm from './listForm.js'
 import List from './list.js';
-const URL = 'http://localhost:5003';
+const URL = 'https://finalprojectbackend.herokuapp.com/';
 
 //this is the main component. Information is sent to and from the API here. Logic dealing with state lives here.
 
@@ -51,10 +51,7 @@ class ToDoList extends Component {
       this.setState({
         toDoList: data,
         finalList: data,
-        isComplete: false,
-        description: '',
-        personResponsible: '',
-        dueDate: ''
+
       });
     })
   }
