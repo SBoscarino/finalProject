@@ -20,6 +20,5 @@ function ListForm(props){
       <button onClick={props.handleSubmit}>Add</button>
     </div>
   );
-}
 
 export default ListForm;
