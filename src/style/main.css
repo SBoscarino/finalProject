@@ -97,6 +97,7 @@ a:hover {
 
 .mainForm input {
   font-family: 'Anton', sans-serif;
+	padding-left: 2px;
 }
 
 .mainForm input:focus {
