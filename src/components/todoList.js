@@ -43,7 +43,9 @@ class ToDoList extends Component {
 
 
   getDatData(){
-    fetch(`${URL}/api/todos`)
+    const url = `${URL}/api/todos`;
+    console.log(url);
+    fetch(url)
     .then(results => {
       return results.json();
     }).then(data => {
