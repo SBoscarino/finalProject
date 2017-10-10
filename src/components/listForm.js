@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../style/main.css';
 
+<<<<<<< HEAD
 //for routing
 const URL = 'http://localhost:5003';
 
