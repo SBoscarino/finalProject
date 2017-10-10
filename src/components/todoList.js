@@ -50,8 +50,7 @@ class ToDoList extends Component {
       console.log('data in component did mount', data);
       this.setState({
         toDoList: data,
-        finalList: data,
-
+        finalList: data
       });
     })
   }
@@ -91,7 +90,14 @@ class ToDoList extends Component {
         dueDate: this.state.dueDate,
       })
     }).then( () => this.getDatData()
-    )
+  ).then(
+    this.setState({
+      isComplete: false,
+      description: '',
+      personResponsible: '',
+      dueDate: ''
+    })
+  )
   }
 
   //push to state, post it to the db, and then reset state in this component.
