@@ -97,6 +97,7 @@ a:hover {
 
 .mainForm input {
   font-family: 'Anton', sans-serif;
+	margin-left: 2px;
 }
 
 .mainForm input:focus {
@@ -116,6 +117,9 @@ button {
 button:hover{
   color: white;
   background-color: #FF4E5D;
+}
+label{
+	padding: 5px;
 }
 
 

@@ -88,7 +88,7 @@ class ListForm extends Component {
     return (
       <div className="list">
         <form className="mainForm">
-          <label>What do you need done?:
+          <label>What do you need done? :
             <input type='text' value={this.state.description} onChange={this.handleDescriptionChange}/>
           </label>
           <label> Who is responsible? :
